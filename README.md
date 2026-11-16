@@ -4,20 +4,12 @@
 [POSTGRES__BADGE]: https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white
 [DOCKER__BADGE]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
 
-[English](#english) | [Português](#portugues)
-
-# <a name="english"></a>Inventory Management System API 🧾
+# <a name="english"></a>Inventory Management System-Backend 🧾
 
 Spring Boot REST API for managing inventory, loans and appointments in university labs.
 
 Authors: 
-Kayke Lavieri Leite,
-
-Rafael de Melo Santiago,
-
-Shams Ameer Ali Ali Aumraan,
-
-Sophia Nobre Portela
+Jai Kumar Vanjare
 
 ## 💻Technologies
 ![JAVA__BADGE] ![SPRING__BADGE] ![MAVEN__BADGE] ![POSTGRES__BADGE] ![DOCKER__BADGE]
@@ -67,7 +59,7 @@ The API provides the following main endpoints:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/snportela/spring_boot__inventory_management
+    git clone https://github.com/Jaikumarvanjare/Inventory-Management-System-Backend
     ```
 2.  **Database Setup:**
   -   Create a PostgreSQL database.
@@ -129,116 +121,3 @@ You can also build and run the application using the provided `Dockerfile`.
   -   **Gmail:** `MAIL_PASSWORD` must be a [Google App Password](https://support.google.com/accounts/answer/185833), not your standard account password.
 
 ---
-
-# <a name="portugues"></a>API de Sistema de Gerenciamento de Inventário 🧾
-
-API REST em Spring Boot para gerenciamento de inventário, empréstimos e agendamentos em laboratórios universitários.
-
-## 💻 Tecnologias
-
-![JAVA__BADGE] ![SPRING__BADGE] ![MAVEN__BADGE] ![POSTGRES__BADGE] ![DOCKER__BADGE]
-
-## Requisitos
-
--   JDK 21
--   PostgreSQL 17
-
-## ⚙️ Funcionalidades
-
--   Permite o gerenciamento de:
-    -   Recursos
-    -   Áreas
-    -   Categorias
-    -   Notas Fiscais 
-    -   Empréstimos e Itens de Empréstimo
-    -   Agendamentos
-    -   Usuários
--   Autenticação de usuário com Spring Security:
-    -   Criptografia de senha com Bcrypt
-    -   Controle de Acesso Baseado em Cargos 
-    -   Autorização com JWT
--   Redefinição de senha por meio de token gerado enviado por e-mail.
--   Paginação e ordenação para todos os endpoints principais.
--   Filtragem e busca com JPA Specifications.
--   Lógica de "soft delete" para integridade dos dados.
--   Migrações de banco de dados gerenciadas pelo Flyway.
-
-## Endpoints
-
-A API fornece os seguintes endpoints principais:
-
--   `/auth/**`: Autenticação (login, recuperação de senha, redefinição de senha).
--   `/api/users`: Gerenciamento de usuários.
--   `/api/areas`: Gerenciamento de áreas físicas.
--   `/api/categories`: Gerenciamento de categorias de recursos.
--   `/api/labs`: Gerenciamento de laboratórios.
--   `/api/receipts`: Gerenciamento de notas fiscais de aquisição.
--   `/api/resources`: Gerenciamento de recursos do inventário.
--   `/api/loans`: Gerenciamento de empréstimos de recursos.
--   `/api/loan-items`: Gerenciamento de itens num empréstimo.
--   `/api/appointments`: Gerenciamento de agendamentos nos laboratórios.
-
-## 🚀 Rodando o Projeto (Desenvolvimento Local)
-
-1.  **Clone o repositório:**
-    ```bash
-    git clone https://github.com/snportela/spring_boot__inventory_management
-    ```
-2.  **Configuração do Banco de Dados:**
-    -   Crie um banco de dados PostgreSQL.
-    -   A aplicação usa Flyway e executará automaticamente as migrações da pasta `src/main/resources/db/migration` ao iniciar.
-
-3.  **Variáveis de Ambiente:**
-    -   Configure as variáveis de ambiente. Você pode defini-las na sua IDE ou criar um arquivo `application.properties` em `src/main/resources/`.
-    -   As seguintes variáveis são necessárias (veja `application.properties` para detalhes):
-        -   `DB_URL`: A URL JDBC completa para seu banco PostgreSQL.
-        -   `DB_USER`: Nome de usuário do banco.
-        -   `DB_PASSWORD`: Senha do banco.
-        -   `JWT_SECRET`: Uma chave secreta para assinar os tokens JWT.
-        -   `RESET_SECRET`: Uma chave secreta para assinar os tokens de redefinição de senha.
-        -   `MAIL_USERNAME`: Conta do Gmail para enviar e-mails.
-        -   `MAIL_PASSWORD`: Senha de Aplicativo do Gmail (não sua senha normal).
-        -   `HOST_URL`: A URL base da sua aplicação frontend (para o link de redefinição de senha).
-
-4.  **Instale as Dependências e Execute:**
-    -   O projeto usa o Maven wrapper.
-    ```bash
-    # Instalar dependências
-    ./mvnw clean install
-    
-    # Executar a aplicação
-    ./mvnw spring-boot:run
-    ```
-
-## 🐳 Executando com Docker
-
-**Nota:** Certifique-se de ter o [Docker](https://www.docker.com/get-started) instalado em sua máquina.
-
-Você também pode construir e executar a aplicação usando o `Dockerfile` fornecido.
-
-1.  **Construa a Imagem Docker:**
-    ```bash
-    docker build -t inventory-api .
-    ```
-
-2.  **Execute o Contêiner Docker:**
-    -   Você deve passar as variáveis de ambiente necessárias para o contêiner usando a flag `-e`.
-    -   Lembre-se de expor a porta `8080`.
-
-    ```bash
-    docker run -p 8080:8080 \
-      -e DB_URL="jdbc:postgresql://<seu-host-db>:<porta>/<nome-db>" \
-      -e DB_USER="<seu-usuario-db>" \
-      -e DB_PASSWORD="<sua-senha-db>" \
-      -e JWT_SECRET="<seu-segredo-jwt>" \
-      -e RESET_SECRET="<seu-segredo-reset>" \
-      -e MAIL_USERNAME="<seu-usuario-gmail>" \
-      -e MAIL_PASSWORD="<sua-senha-app-gmail>" \
-      -e HOST_URL="<url-do-seu-frontend>" \
-      --name inventory-api-container \
-      -d inventory-api
-    ```
-
-    **Notas:**
-    -   **Gmail:** `MAIL_PASSWORD` deve ser uma [Senha de Aplicativo](https://support.google.com/accounts/answer/185833) do Google, não sua senha de conta padrão.
-    
